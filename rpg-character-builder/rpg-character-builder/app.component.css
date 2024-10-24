@@ -1,0 +1,80 @@
+/* General Layout and Typography */
+.home {
+  padding: 20px;
+  text-align: center;
+  background-color: #eaf3f3; /* Light background to enhance readability */
+  font-family: 'Georgia', serif; /* Elegant serif font for RPG feel */
+  color: #333; /* Darker text for contrast */
+}
+
+/* Heading Styles */
+.home h1 {
+  font-size: 3rem; /* Large, eye-catching heading */
+  color: #2c3e50; /* Dark blue color for contrast */
+  text-transform: uppercase; /* Makes the heading more prominent */
+  margin-bottom: 20px;
+  letter-spacing: 2px; /* Adds a bit of space between letters for style */
+}
+
+/* Paragraph Styles */
+.home p {
+  font-size: 1.2rem; /* Slightly larger font for better readability */
+  line-height: 1.6; /* Increases space between lines for easier reading */
+  margin-bottom: 20px;
+  max-width: 800px; /* Limits width of text content for better focus */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Image Gallery Styles */
+.image-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between images */
+  margin-top: 30px;
+}
+
+.image-gallery img {
+  width: 250px; /* Width of the images */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Rounded corners for images */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.image-gallery img:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+/* Button Styles (if you add buttons later) */
+.home button {
+  background-color: #3498db; /* Vibrant blue for call to action */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home button:hover {
+  background-color: #2980b9; /* Darken the button on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .image-gallery {
+    flex-direction: column; /* Stack images on smaller screens */
+    align-items: center;
+  }
+
+  .home h1 {
+    font-size: 2.5rem; /* Smaller heading on mobile */
+  }
+
+  .home p {
+    font-size: 1rem; /* Smaller text on mobile */
+  }
+}
