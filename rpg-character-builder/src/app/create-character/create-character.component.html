@@ -1,0 +1,51 @@
+<div class="create-character">
+  <h1>Create New Character</h1>
+  <form #characterForm="ngForm" (ngSubmit)="onSubmit(characterForm)">
+    <!-- Character Name -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" ngModel required />
+
+    <!-- Gender Selection -->
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender" ngModel required>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <!-- Class Selection -->
+    <label for="class">Class:</label>
+    <select id="class" name="class" ngModel required>
+      <option value="Warrior">Warrior</option>
+      <option value="Mage">Mage</option>
+      <option value="Rogue">Rogue</option>
+    </select>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="!characterForm.valid">Create Character</button>
+    <button type="button" (click)="resetForm(characterForm)">Reset</button>
+  </form>
+
+  <!-- Display Characters -->
+  <div class="character-list">
+    <h2>Created Characters</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Class</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let character of characters">
+          <td>{{ character.id }}</td>
+          <td>{{ character.name }}</td>
+          <td>{{ character.gender }}</td>
+          <td>{{ character.characterClass }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
