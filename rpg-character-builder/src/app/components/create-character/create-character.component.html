@@ -1,0 +1,77 @@
+<div class="container">
+  <h2>Create New Character</h2>
+
+  <!-- Template-driven form to create new characters -->
+  <form #characterForm="ngForm" (ngSubmit)="addCharacter()">
+    <div class="form-group">
+      <label for="name">Character Name</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        [(ngModel)]="character.name"
+        name="name"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select
+        id="gender"
+        class="form-control"
+        [(ngModel)]="character.gender"
+        name="gender"
+        required
+      >
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="class">Class</label>
+      <select
+        id="class"
+        class="form-control"
+        [(ngModel)]="character.characterClass"
+        name="characterClass"
+        required
+      >
+        <option value="">Select Class</option>
+        <option value="Warrior">Warrior</option>
+        <option value="Mage">Mage</option>
+        <option value="Rogue">Rogue</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Character</button>
+    <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+  </form>
+
+  <!-- Display created characters -->
+  <div *ngIf="characters.length > 0">
+    <h3>Created Characters</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Character ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Class</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let char of characters">
+          <td>{{ char.id }}</td>
+          <td>{{ char.name }}</td>
+          <td>{{ char.gender }}</td>
+          <td>{{ char.characterClass }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

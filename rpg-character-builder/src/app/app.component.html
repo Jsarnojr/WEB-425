@@ -23,24 +23,16 @@
 
 <!-- Main content including navigation and routing outlet -->
 <main class="main">
+  <!-- Navigation bar with links to different routes -->
   <nav>
-    <a routerLink="/players">Players</a>
-    <!-- Other navigation links can be added here -->
+    <ul>
+      <li><a routerLink="/signin">Sign In</a></li>
+      <li><a routerLink="/create-character">Create Character</a></li>
+      <li><a routerLink="/players">Players</a></li>
+      <li><a routerLink="/create-guild">Create Guild</a></li>
+    </ul>
   </nav>
 
-  <nav>
-    <a routerLink="/create-character">Create Character</a>
-  </nav>
-
-  <div class="content">
-    <div class="left-side">
-      <!-- SVG Angular logo and other content here -->
-    </div>
-    <div class="divider"></div>
-    <div class="pill-group">
-      <!-- Additional content goes here -->
-    </div>
-  </div>
-
+  <!-- This section will render the content based on the active route -->
   <router-outlet></router-outlet>
 </main>
