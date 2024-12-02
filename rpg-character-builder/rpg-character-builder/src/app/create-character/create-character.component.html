@@ -1,0 +1,57 @@
+<div class="create-character-form">
+  <h2>Create Your Character</h2>
+  <form #characterForm="ngForm" (ngSubmit)="addCharacter()">
+    <div>
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="model.name"
+        required
+      />
+    </div>
+    <div>
+      <label for="class">Class:</label>
+      <input
+        type="text"
+        id="class"
+        name="class"
+        [(ngModel)]="model.class"
+        required
+      />
+    </div>
+    <div>
+      <label for="level">Level:</label>
+      <input
+        type="number"
+        id="level"
+        name="level"
+        [(ngModel)]="model.level"
+        min="1"
+        required
+      />
+    </div>
+    <div>
+      <label for="race">Race:</label>
+      <input
+        type="text"
+        id="race"
+        name="race"
+        [(ngModel)]="model.race"
+        required
+      />
+    </div>
+    <button type="submit" class="btn">Forge Your Destiny</button>
+    <button type="button" (click)="resetForm()">Reset</button>
+  </form>
+
+  <div *ngIf="characters.length > 0">
+    <h3>Created Characters:</h3>
+    <ul>
+      <li *ngFor="let character of characters">
+        {{ character.name }} - {{ character.class }} (Level {{ character.level }})
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,6 +1,11 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app-routing.module';  // Import the routes directly
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+// Bootstrap the app using the standalone AppComponent and routing
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(routes)  // Use the routes directly here
+  ]
+}).catch(err => console.error(err));

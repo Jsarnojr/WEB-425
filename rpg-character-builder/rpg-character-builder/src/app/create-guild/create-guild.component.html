@@ -1,0 +1,97 @@
+<!-- create-guild.component.html -->
+<div class="container">
+  <h2>Create a New Guild</h2>
+
+  <form [formGroup]="guildForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <label for="guildName">Guild Name</label>
+      <input
+        type="text"
+        id="guildName"
+        formControlName="guildName"
+        class="form-control"
+        placeholder="Enter guild name"
+        [class.is-invalid]="submitted && guildForm.controls.guildName.invalid"
+      />
+      <div *ngIf="submitted && guildForm.controls.guildName.errors" class="invalid-feedback">
+        Guild name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        placeholder="Enter guild description"
+        rows="3"
+        [class.is-invalid]="submitted && guildForm.controls.description.invalid"
+      ></textarea>
+      <div *ngIf="submitted && guildForm.controls.description.errors" class="invalid-feedback">
+        Description is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Guild Type</label>
+      <select
+        id="type"
+        formControlName="type"
+        class="form-control"
+        [class.is-invalid]="submitted && guildForm.controls.type.invalid"
+      >
+        <option value="">Select type</option>
+        <option value="Competitive">Competitive</option>
+        <option value="Casual">Casual</option>
+        <option value="Social">Social</option>
+        <option value="Educational">Educational</option>
+      </select>
+      <div *ngIf="submitted && guildForm.controls.type.errors" class="invalid-feedback">
+        Guild type is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Notification Preference</label>
+      <div>
+        <label>
+          <input type="radio" formControlName="notificationPreference" value="Email" /> Email
+        </label>
+        <label>
+          <input type="radio" formControlName="notificationPreference" value="SMS" /> SMS
+        </label>
+        <label>
+          <input type="radio" formControlName="notificationPreference" value="In-App" /> In-App
+        </label>
+      </div>
+      <div *ngIf="submitted && guildForm.controls.notificationPreference.errors" class="invalid-feedback">
+        Notification preference is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input type="checkbox" formControlName="acceptTerms" /> I accept the terms and conditions
+      </label>
+      <div *ngIf="submitted && guildForm.controls.acceptTerms.errors" class="invalid-feedback">
+        You must accept the terms and conditions.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="guildForm.invalid">
+      Create Guild
+    </button>
+  </form>
+
+  <hr />
+
+  <div *ngIf="guilds.length > 0">
+    <h3>Created Guilds</h3>
+    <ul>
+      <li *ngFor="let guild of guilds">
+        <strong>{{ guild.guildName }}</strong> - {{ guild.type }} ({{ guild.notificationPreference }})
+      </li>
+    </ul>
+  </div>
+</div>

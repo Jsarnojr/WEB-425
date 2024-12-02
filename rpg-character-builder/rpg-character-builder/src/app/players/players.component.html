@@ -1,0 +1,27 @@
+<!-- players.component.html -->
+<div class="rpg-container">
+  <h1 class="title">Adventurers Guild</h1>
+
+  <!-- List of characters -->
+  <div class="players-container">
+    <h1>List of Characters</h1>
+
+    <!-- Loop through the characters array -->
+    <div *ngFor="let character of characters" class="player-card">
+      <!-- Display character's detailed information -->
+      <h2>{{ character.name }}</h2>
+      <p><strong>Gender:</strong> {{ character.gender }}</p>
+      <p><strong>Class:</strong> {{ character.class }}</p>
+      <p><strong>Faction:</strong> {{ character.faction }}</p>
+      <p><strong>Starting Location:</strong> {{ character.startingLocation }}</p>
+      <p><strong>Fun Fact:</strong> {{ character.funFact }}</p>
+    </div>
+  </div>
+
+  <!-- Alternative list format: displaying just character names -->
+  <ul>
+    <li *ngFor="let character of characters">
+      {{ character.name }}
+    </li>
+  </ul>
+</div>

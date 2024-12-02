@@ -1,0 +1,32 @@
+/* create-guild.component.css */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.invalid-feedback {
+  color: red;
+  font-size: 0.9em;
+}
+
+.is-invalid {
+  border-color: red;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}

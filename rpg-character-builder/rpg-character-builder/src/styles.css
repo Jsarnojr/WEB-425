@@ -1,1 +1,87 @@
+/* General Reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Header and Navigation Styling */
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+}
+
+.main-nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.main-nav ul li {
+  margin: 0 15px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: white;
+  font-family: 'Verdana', sans-serif;
+}
+
+/* Main Content Styling */
+main {
+  padding: 20px;
+  font-family: 'Georgia', serif;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.footer-nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.footer-nav ul li {
+  margin: 0 15px;
+}
+
+.footer-nav a {
+  text-decoration: none;
+  color: white;
+  font-family: 'Courier New', monospace;
+}
+
+/* Additional Styling */
+p {
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+/* Button Styling */
+.btn {
+  padding: 12px 25px;
+  background-color: #6b4226;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px;
+}
+
+.btn:hover {
+  background-color: #8b4513;
+  color: gold;
+}
+
 /* You can add global styles to this file, and also import other style files */

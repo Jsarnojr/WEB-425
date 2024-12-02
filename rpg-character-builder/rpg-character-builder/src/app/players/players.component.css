@@ -1,0 +1,41 @@
+/* Ensure the background image is correct */
+.rpg-container {
+  background: url('/assets/images/parchment-bg.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 20px;
+  border: 4px solid #8B4513;  /* Deep brown border */
+  border-radius: 15px;
+  font-family: 'MedievalSharp', serif, Arial, sans-serif; /* Added fallback fonts */
+  color: #fff;  /* White text color */
+  text-align: center;
+  box-sizing: border-box; /* Ensure padding and border don't affect overall size */
+  min-height: 100vh; /* Full height to cover the screen */
+}
+
+/* Styling for the title */
+.title {
+  font-size: 3rem;
+  color: gold;
+  margin-bottom: 20px;
+}
+
+/* Styling for the player list */
+.player-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styling for each player item */
+.player-list li {
+  font-size: 1.8rem;
+  margin: 15px 0;
+  color: #f4c542;  /* Gold color for text */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Adding a subtle shadow for better readability */
+}
+
+/* Optional: Add hover effects to list items */
+.player-list li:hover {
+  color: #ffcc00; /* Slightly lighter gold when hovered */
+  cursor: pointer;
+}

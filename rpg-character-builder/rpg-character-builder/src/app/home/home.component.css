@@ -1,0 +1,143 @@
+/* General container for home content */
+.home-content {
+  max-width: 1200px;  /* Limit the width */
+  margin: 0 auto;  /* Center the content */
+  padding: 2rem;  /* Add padding */
+  font-family: 'MedievalSharp', sans-serif; /* Fantasy font */
+  color: #3e2723;  /* Dark brown color for RPG feel */
+  background: url('/assets/rpg-bg.jpg') no-repeat center center/cover; /* Background image for RPG theme */
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Slight shadow to add depth */
+}
+
+/* Title Styling */
+.home-content h1 {
+  font-size: 3rem;
+  text-align: center;
+  color: #d4af37; /* Gold color for the RPG theme */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Glowing text effect */
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border-radius: 10px;
+}
+
+/* Description Text */
+.home-content p {
+  font-size: 1.1rem;
+  color: #e1b27f; /* Lighter brown/gold for description */
+  margin-bottom: 2rem;
+  text-align: justify;
+  line-height: 1.8;
+}
+
+/* Add a general space between text blocks */
+.home-content div {
+  margin-bottom: 2rem;
+}
+
+/* Image styling */
+.home-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);  /* Add slight shadow for depth */
+  border: 5px solid #5c4033; /* Give images a frame similar to ancient scrolls */
+}
+
+/* Button styling */
+.home-content .get-started-btn {
+  display: inline-block;
+  background-color: #6a4e23;  /* Dark brown/wooden color */
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 2rem;
+  text-decoration: none;
+  border: 3px solid #d4af37; /* Gold border for the button */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Button hover effect */
+.home-content .get-started-btn:hover {
+  background-color: #d4af37;  /* Gold color on hover */
+  color: #3e2723;  /* Dark text */
+  cursor: pointer;
+  transform: scale(1.05);  /* Slight zoom effect */
+}
+
+/* Add a scroll icon next to the button */
+.home-content .get-started-btn:after {
+  content: '\2193';  /* Down arrow symbol */
+  font-size: 1.6rem;
+  margin-left: 10px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Add some RPG-themed icon classes */
+.icon-sword {
+  font-size: 2rem;
+  margin-right: 10px;
+  color: #d4af37;
+}
+
+.icon-shield {
+  font-size: 2rem;
+  margin-right: 10px;
+  color: #5c4033;
+}
+
+/* Styling for the "Get Started" callout section */
+.get-started-callout {
+  background: #2c3e50;  /* Darker background */
+  padding: 1.5rem;
+  margin-top: 3rem;
+  text-align: center;
+  color: #fff;
+  font-size: 1.5rem;
+  border-radius: 8px;
+}
+
+.get-started-callout a {
+  color: #d4af37;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  display: inline-block;
+  border: 2px solid #d4af37;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.get-started-callout a:hover {
+  background-color: #d4af37;
+  color: #3e2723;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .home-content {
+    padding: 1rem;  /* Reduce padding on smaller screens */
+  }
+
+  .home-content h1 {
+    font-size: 2.5rem;  /* Adjust font size for small screens */
+  }
+
+  .home-content p {
+    font-size: 1rem;  /* Adjust font size for small screens */
+  }
+
+  .home-content img {
+    max-width: 100%;  /* Ensure images are responsive */
+  }
+
+  .home-content .get-started-btn {
+    width: 100%;  /* Make button span full width */
+    padding: 1rem;
+  }
+}

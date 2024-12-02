@@ -1,0 +1,31 @@
+.faction-selection {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 30px;
+  text-align: center;
+  font-family: 'MedievalSharp', serif;
+  border-radius: 10px;
+}
+
+h1 {
+  color: gold;
+  font-size: 2.8rem;
+  margin-bottom: 25px;
+}
+
+.faction-list .btn {
+  display: block;
+  margin: 15px auto;
+  padding: 12px;
+  background-color: #4a3024;
+  color: white;
+  border: 3px solid #fff;
+  border-radius: 8px;
+  width: 80%;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.faction-list .btn:hover {
+  background-color: #6b4226;
+}

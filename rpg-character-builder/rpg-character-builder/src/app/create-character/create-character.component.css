@@ -1,0 +1,91 @@
+.character-creation {
+  background: url('/assets/images/dungeon-bg.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 30px;
+  color: white;
+  font-family: 'MedievalSharp', serif;
+  border-radius: 10px;
+  border: 3px solid #8B0000;
+}
+
+h1 {
+  color: #f4c542;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.label {
+  display: block;
+  margin: 10px 0;
+  font-size: 1.5rem;
+}
+
+.input {
+  display: block;
+  margin: 15px 0;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.select {
+  display: block;
+  margin: 15px 0;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.btn {
+  margin-top: 20px;
+  background-color: #4a3024;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #8b4513;
+}
+
+.character-list {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+table th {
+  background-color: #f4c542;
+}
+
+table td {
+  background-color: rgba(255, 255, 255, 0.1);
+}
