@@ -131,6 +131,25 @@
 
       <!-- Routing Display -->
       <router-outlet></router-outlet> <!-- This will display routed components -->
+
+      <!-- RPG Character and Guild Management Section -->
+      <div>
+        <!-- Create Character Section -->
+        <app-create-character (characterCreated)="onCharacterCreated($event)"></app-create-character>
+  <ul>
+    <li *ngFor="let character of characters">
+      {{ character.name }} - {{ character.class }} (Level {{ character.level }})
+    </li>
+  </ul>
+
+  <!-- Guild Creation -->
+  <app-create-guild (guildCreated)="onGuildCreated($event)"></app-create-guild>
+  <ul>
+    <li *ngFor="let guild of guilds">
+      {{ guild.name }} (Leader: {{ guild.leader }}, Members: {{ guild.members }})
+    </li>
+  </ul>
+      </div>
     </main>
 
     <!-- Footer -->

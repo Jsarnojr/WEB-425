@@ -1,5 +1,7 @@
 // players.component.ts
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 interface Character {
   id: number;
@@ -13,7 +15,9 @@ interface Character {
 }
 
 @Component({
+  standalone: true, // Add this flag
   selector: 'app-players',
+  imports: [CommonModule, FormsModule],  // Import both CommonModule and FormsModule
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.css']
 })
@@ -40,6 +44,7 @@ export class PlayersComponent implements OnInit {
       level: 2
     }
   ];
+onSubmit: any;
 
   ngOnInit(): void {
     // Logic to fetch characters if any, for now we'll use a static list

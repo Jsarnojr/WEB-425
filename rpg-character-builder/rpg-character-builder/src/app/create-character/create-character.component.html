@@ -1,5 +1,7 @@
 <div class="create-character-form">
   <h2>Create Your Character</h2>
+
+  <!-- Existing character creation form -->
   <form #characterForm="ngForm" (ngSubmit)="addCharacter()">
     <div>
       <label for="name">Name:</label>
@@ -9,8 +11,10 @@
         name="name"
         [(ngModel)]="model.name"
         required
+        placeholder="Enter character name"
       />
     </div>
+
     <div>
       <label for="class">Class:</label>
       <input
@@ -19,8 +23,10 @@
         name="class"
         [(ngModel)]="model.class"
         required
+        placeholder="Enter character class"
       />
     </div>
+
     <div>
       <label for="level">Level:</label>
       <input
@@ -30,8 +36,10 @@
         [(ngModel)]="model.level"
         min="1"
         required
+        placeholder="Enter character level"
       />
     </div>
+
     <div>
       <label for="race">Race:</label>
       <input
@@ -40,18 +48,39 @@
         name="race"
         [(ngModel)]="model.race"
         required
+        placeholder="Enter character race"
       />
     </div>
-    <button type="submit" class="btn">Forge Your Destiny</button>
-    <button type="button" (click)="resetForm()">Reset</button>
+
+    <button type="submit" class="btn" [disabled]="!characterForm.valid">
+      Forge Your Destiny
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="resetForm()">
+      Reset
+    </button>
   </form>
 
+  <!-- Display message when there are no characters -->
+  <div *ngIf="characters.length === 0" class="no-characters-message">
+    No characters found
+  </div>
+
+  <!-- Display characters if the list is not empty -->
   <div *ngIf="characters.length > 0">
     <h3>Created Characters:</h3>
-    <ul>
-      <li *ngFor="let character of characters">
-        {{ character.name }} - {{ character.class }} (Level {{ character.level }})
-      </li>
-    </ul>
+    <div *ngFor="let character of characters" class="character-item">
+      <p>{{ character.name }} ({{ character.class }}) - Level: {{ character.level }}</p>
+    </div>
   </div>
+
+  <!-- New player name form -->
+  <h2>Create Player</h2>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div>
+      <label for="playerName">Player Name:</label>
+      <input type="text" name="playerName" ngModel placeholder="Enter player name" required />
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
 </div>

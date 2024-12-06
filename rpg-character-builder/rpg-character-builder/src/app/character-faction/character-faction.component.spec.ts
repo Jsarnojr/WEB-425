@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CharacterFactionComponent } from './character-faction.component';
-import { CommonModule } from '@angular/common'; // Import CommonModule to provide ngFor
-import { RouterTestingModule } from '@angular/router/testing'; // Import RouterTestingModule if routing is involved
+import { CommonModule } from '@angular/common'; // Import for ngFor
 
 describe('CharacterFactionComponent', () => {
   let fixture: ComponentFixture<CharacterFactionComponent>;
@@ -10,28 +9,26 @@ describe('CharacterFactionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        CommonModule,               // Import CommonModule to provide ngFor
-        RouterTestingModule,        // Import RouterTestingModule if routing is involved
+        CharacterFactionComponent, // Standalone component
+        CommonModule               // Required for *ngFor
       ],
-      declarations: [CharacterFactionComponent], // Declare the component here
     }).compileComponents();
 
     fixture = TestBed.createComponent(CharacterFactionComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();  // Trigger initial change detection
+    fixture.detectChanges(); // Trigger initial change detection
   });
 
   it('should create the component', () => {
-    expect(component).toBeTruthy();  // Check if the component is created successfully
+    expect(component).toBeTruthy(); // Verify component creation
   });
 
   it('should display the correct number of factions', () => {
-    // Assuming factions is an array in your component
-    component.factions = ['Faction 1', 'Faction 2', 'Faction 3']; // Set the data to be used in the test
-    fixture.detectChanges();  // Trigger change detection to reflect data changes
+    component.factions = ['Faction 1', 'Faction 2', 'Faction 3']; // Set test data
+    fixture.detectChanges(); // Update the DOM after setting factions
 
     const compiled = fixture.nativeElement as HTMLElement;
-    const factionList = compiled.querySelectorAll('.faction'); // Make sure you are selecting the right class
-    expect(factionList.length).toBe(3);  // Check if the number of factions rendered is 3
+    const factionButtons = compiled.querySelectorAll('.btn'); // Select buttons
+    expect(factionButtons.length).toBe(3); // Expect 3 buttons to be rendered
   });
 });

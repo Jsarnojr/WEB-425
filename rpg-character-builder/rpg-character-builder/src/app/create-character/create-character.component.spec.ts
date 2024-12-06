@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreateCharacterComponent } from './create-character.component';
-import { FormsModule } from '@angular/forms';  // Import FormsModule
+import { CommonModule } from '@angular/common';  // Import CommonModule for Angular directives
+import { FormsModule } from '@angular/forms';  // Import FormsModule for ngModel support
+import { By } from '@angular/platform-browser';
 
 describe('CreateCharacterComponent', () => {
   let component: CreateCharacterComponent;
@@ -8,8 +10,7 @@ describe('CreateCharacterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule],  // Add FormsModule for ngModel support
-      declarations: [CreateCharacterComponent]
+      imports: [CreateCharacterComponent, CommonModule, FormsModule],  // Import the standalone component here
     }).compileComponents();
 
     fixture = TestBed.createComponent(CreateCharacterComponent);
@@ -70,5 +71,46 @@ describe('CreateCharacterComponent', () => {
     expect(component.model.class).toBe('');
     expect(component.model.level).toBe(1);
     expect(component.model.race).toBe('');
+  });
+
+  it('should display characters correctly', () => {
+    // Add some test characters
+    component.characters = [
+      {
+        name: 'John', class: 'Warrior', level: 1,
+        id: 0,
+        race: ''
+      },
+      {
+        name: 'Sarah', class: 'Mage', level: 2,
+        id: 0,
+        race: ''
+      }
+    ];
+    fixture.detectChanges();
+
+    const characterElements = fixture.debugElement.queryAll(By.css('.character-item'));
+
+    // Check if two character elements are displayed
+    expect(characterElements.length).toBe(2);
+
+    // Check if character names, class, and levels are displayed correctly
+    expect(characterElements[0].nativeElement.textContent).toContain('John');
+    expect(characterElements[0].nativeElement.textContent).toContain('Warrior');
+    expect(characterElements[0].nativeElement.textContent).toContain('Level: 1');
+
+    expect(characterElements[1].nativeElement.textContent).toContain('Sarah');
+    expect(characterElements[1].nativeElement.textContent).toContain('Mage');
+    expect(characterElements[1].nativeElement.textContent).toContain('Level: 2');
+  });
+
+  it('should display a message when the character list is empty', () => {
+    component.characters = [];
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement;
+    const message = compiled.querySelector('.no-characters-message');
+    expect(message).toBeTruthy();
+    expect(message.textContent).toContain('No characters found');
   });
 });

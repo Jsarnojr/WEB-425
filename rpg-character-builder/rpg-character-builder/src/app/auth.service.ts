@@ -1,6 +1,5 @@
-// auth.service.ts
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
@@ -22,11 +21,12 @@ export class AuthService {
 
   // Auth state to track whether the user is logged in or not
   private authState = new BehaviorSubject<boolean>(false);
+  getUserInfo: any;
 
   constructor(private cookieService: CookieService, private router: Router) {}
 
   // Returns the auth state as an observable
-  getAuthState() {
+  getAuthState(): Observable<boolean> {
     return this.authState.asObservable();
   }
 
@@ -56,5 +56,16 @@ export class AuthService {
     this.authState.next(false);
     // Redirect to sign-in page
     this.router.navigate(['/signin']);
+  }
+
+  // Simple AuthService methods for basic login/logout functionality:
+  // Sign in method
+  signinBasic(): void {
+    this.authState.next(true);
+  }
+
+  // Sign out method
+  signoutBasic(): void {
+    this.authState.next(false);
   }
 }

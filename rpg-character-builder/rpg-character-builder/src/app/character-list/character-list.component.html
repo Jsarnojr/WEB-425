@@ -1,0 +1,15 @@
+<div>
+  <h3>Character List</h3>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Class</th>
+      <th>Level</th>
+    </tr>
+    <tr *ngFor="let character of characters">
+      <td>{{ character.name }}</td>
+      <td>{{ character.class }}</td>
+      <td>{{ character.level }}</td>
+    </tr>
+  </table>
+</div>

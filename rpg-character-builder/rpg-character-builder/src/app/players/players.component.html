@@ -2,6 +2,15 @@
 <div class="rpg-container">
   <h1 class="title">Adventurers Guild</h1>
 
+  <!-- Add New Player Form -->
+  <div class="add-player-form">
+    <h2>Add New Player</h2>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <input type="text" name="playerName" ngModel placeholder="Enter player name" required />
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+
   <!-- List of characters -->
   <div class="players-container">
     <h1>List of Characters</h1>

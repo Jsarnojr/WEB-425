@@ -34,7 +34,8 @@ import { CommonModule } from '@angular/common';  // Import CommonModule to use n
       cursor: pointer;
     }
   `],
-  standalone: true  // Marking the component as standalone
+  standalone: true,  // Marking the component as standalone
+  imports: [CommonModule]  // Include CommonModule for ngFor
 })
 export class CharacterFactionComponent {
   factions = ['Knights of the Flame', 'Shadow Brotherhood', 'Order of the Arcane'];  // Example list of factions
