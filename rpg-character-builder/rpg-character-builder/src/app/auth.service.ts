@@ -1,71 +1,71 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
-
-interface User {
-  empId: string;
-  email: string;
-  password: string;
-}
+import { BehaviorSubject } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';  // For session management
+import { Router } from '@angular/router';  // For programmatic navigation
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // Simulated array of users with empId, email, and password
-  private users: User[] = [
-    { empId: '1', email: 'user1@example.com', password: 'password123' },
-    { empId: '2', email: 'user2@example.com', password: 'password456' },
-  ];
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);  // Authentication state
+  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();  // Observable for auth state
+  signOut: any;
 
-  // Auth state to track whether the user is logged in or not
-  private authState = new BehaviorSubject<boolean>(false);
-  getUserInfo: any;
-
-  constructor(private cookieService: CookieService, private router: Router) {}
-
-  // Returns the auth state as an observable
-  getAuthState(): Observable<boolean> {
-    return this.authState.asObservable();
-  }
-
-  // Signin method that checks if the user exists in the array
-  signin(email: string, password: string): boolean {
-    // Check if user exists in the users array based on email and password
-    const user = this.users.find(u => u.email === email && u.password === password);
-
-    if (user) {
-      // If user is authenticated, set a session cookie
-      this.cookieService.set('session_user', email);
-      // Update authState to true (authenticated)
-      this.authState.next(true);
-      return true; // Successful authentication
-    } else {
-      // If user is not found, return false and set authState to false
-      this.authState.next(false);
-      return false; // Authentication failed
+  constructor(
+    private cookieService: CookieService,  // Cookie handling
+    private router: Router  // For navigation (e.g., sign-out redirection)
+  ) {
+    // Check if a session cookie exists to determine if the user is authenticated
+    const storedToken = this.cookieService.get('session_user');
+    if (storedToken) {
+      this.isAuthenticatedSubject.next(true);  // If token exists, user is authenticated
     }
   }
 
-  // Sign out method to clear cookies and set authState to false
+  // Returns the auth state observable
+  getAuthState() {
+    return this.isAuthenticated$;
+  }
+
+  // Sign in method that checks if the user's credentials are valid
+  signin(email: string, password: string): boolean {
+    const users = [
+      { email: 'user1@example.com', password: 'password123' },
+      { email: 'user2@example.com', password: 'password456' },
+    ];
+
+    const user = users.find((u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+    if (user) {
+      this.cookieService.set('session_user', user.email);  // Store session with email
+      this.isAuthenticatedSubject.next(true);  // Set authentication state to true
+      return true;  // Return success
+    }
+
+    this.isAuthenticatedSubject.next(false);  // Invalid login
+    return false;  // Return failure
+  }
+
+  // Sign out method to clear the session cookie and redirect
   signout(): void {
-    // Delete the session cookie
-    this.cookieService.delete('session_user');
-    // Set auth state to false (not authenticated)
-    this.authState.next(false);
-    // Redirect to sign-in page
-    this.router.navigate(['/signin']);
+    this.cookieService.delete('session_user');  // Clear session cookie
+    this.isAuthenticatedSubject.next(false);  // Set auth state to false
+    this.router.navigate(['/signin']);  // Redirect to sign-in page after logout
   }
 
-  // Simple AuthService methods for basic login/logout functionality:
-  // Sign in method
-  signinBasic(): void {
-    this.authState.next(true);
+  // Fetch the current user's email
+  getUserEmail(): string {
+    return this.cookieService.get('session_user') || '';  // Return email if exists or empty string
   }
 
-  // Sign out method
-  signoutBasic(): void {
-    this.authState.next(false);
+  // Fetch user info (for now, just return user email)
+  getUserInfo(): { email: string } | null {
+    const email = this.getUserEmail();  // Reuse getUserEmail method
+    return email ? { email } : null;  // Return email info or null if not authenticated
+  }
+
+  // Optional: Check if the user is authenticated
+  isAuthenticated(): boolean {
+    return this.isAuthenticatedSubject.getValue();
   }
 }

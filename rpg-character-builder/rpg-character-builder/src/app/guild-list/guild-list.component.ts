@@ -9,5 +9,6 @@ import { CommonModule } from '@angular/common';  // Import CommonModule for ngFo
   imports: [CommonModule]  // Add CommonModule here
 })
 export class GuildListComponent {
+guilds: any;
   // component logic
 }

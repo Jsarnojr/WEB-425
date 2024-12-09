@@ -16,9 +16,11 @@ import { CommonModule } from '@angular/common';  // Import CommonModule for ngIf
           <li><a href="#">Home</a></li>
           <li><a href="#">Characters</a></li>
           <li><a href="#">Settings</a></li>
+          <!-- Display user info if authenticated -->
           <li *ngIf="isAuthenticated">
             <span class="user-info">{{ userInfo?.username }}</span>
           </li>
+          <!-- Display Sign In if not authenticated -->
           <li *ngIf="!isAuthenticated">
             <a href="#">Sign In</a>
           </li>

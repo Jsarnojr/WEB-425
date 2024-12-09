@@ -1,23 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component'; // Import AppComponent
-import { HeaderComponent } from './header/header.component'; // Import HeaderComponent (standalone)
-import { FooterComponent } from './footer/footer.component'; // Import FooterComponent (standalone)
-import { CreateCharacterComponent } from './create-character/create-character.component'; // Import CreateCharacterComponent (standalone)
+import { AppComponent } from './app.component'; // Import your component
+import { HeaderComponent } from './header/header.component'; // Import HeaderComponent
+import { FooterComponent } from './footer/footer.component'; // Import FooterComponent
+import { CreateCharacterComponent } from './create-character/create-character.component'; // Import CreateCharacterComponent
 import { CreateGuildModule } from './create-guild/create-guild.module'; // Import CreateGuildModule
-import { RouterTestingModule } from '@angular/router/testing';
+
+// Correctly import DynamicTestModule
+import { DynamicTestModule } from './testing/dynamic-test.module';  // Correct import path
+
 import { CommonModule } from '@angular/common';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth.service'; // AuthService for mocking
 import { of } from 'rxjs';
-
-// Define the DynamicTestModule
-import { NgModule } from '@angular/core';
-
-@NgModule({
-  declarations: [],
-  imports: [CommonModule], // Ensure CommonModule is imported for *ngFor, *ngIf, etc.
-  exports: [],
-})
-export class DynamicTestModule {}
+import { provideRouter } from '@angular/router'; // Router dependency for tests
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -25,28 +19,29 @@ describe('AppComponent', () => {
   let mockAuthService: jasmine.SpyObj<AuthService>;
 
   beforeEach(async () => {
-    // Mock the AuthService methods
+    // Mock AuthService methods
     mockAuthService = jasmine.createSpyObj('AuthService', ['getAuthState', 'signout']);
-    mockAuthService.getAuthState.and.returnValue(of(false)); // Mock initial authentication state
+    mockAuthService.getAuthState.and.returnValue(of(false)); // Mocked authentication state
 
+    // Configure the testing module
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule, // Mock RouterTestingModule for routing
-        CommonModule, // Import CommonModule for *ngIf, *ngFor, etc.
+        CommonModule, // Necessary for *ngIf, *ngFor
         HeaderComponent, // Import standalone HeaderComponent
         FooterComponent, // Import standalone FooterComponent
-        CreateGuildModule, // Import CreateGuildModule here
-        DynamicTestModule, // Import the DynamicTestModule here to use CreateGuildComponent in tests
+        CreateGuildModule, // Import the module with the CreateGuild component
+        DynamicTestModule, // Import the DynamicTestModule here
+        provideRouter([]), // Provide routing if needed
       ],
       declarations: [AppComponent], // Declare AppComponent here
       providers: [
-        { provide: AuthService, useValue: mockAuthService }, // Provide the mocked AuthService
+        { provide: AuthService, useValue: mockAuthService }, // Use the mocked AuthService
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges(); // Trigger change detection to initialize the component
+    fixture.detectChanges(); // Trigger change detection
   });
 
   it('should create the app component', () => {
@@ -70,22 +65,22 @@ describe('AppComponent', () => {
   });
 
   it('should call signout on AuthService when Sign Out link is clicked', () => {
-    component.isAuthenticated = true; // Simulate user authentication
-    fixture.detectChanges(); // Trigger change detection
+    component.isAuthenticated = true;
+    fixture.detectChanges();
 
     const signOutLink = fixture.nativeElement.querySelector('a');
-    signOutLink.click(); // Simulate click on "Sign Out" link
-
-    expect(mockAuthService.signout).toHaveBeenCalled(); // Verify that signout method was called
+    signOutLink.click(); // Simulate click
+    expect(mockAuthService.signout).toHaveBeenCalled(); // Verify if signout method was called
   });
 
   it('should correctly handle auth state changes', () => {
-    mockAuthService.getAuthState.and.returnValue(of(true)); // Simulate a change in auth state
-    fixture.detectChanges(); // Trigger change detection
-    expect(component.isAuthenticated).toBeTrue(); // Verify that the component reflects the updated state
+    mockAuthService.getAuthState.and.returnValue(of(true)); // Simulate auth state change
+    fixture.detectChanges();
+    expect(component.isAuthenticated).toBeTrue();
   });
 });
 
+// Test for CreateCharacterComponent
 describe('CreateCharacterComponent', () => {
   it('should create the CreateCharacterComponent', () => {
     const fixture = TestBed.createComponent(CreateCharacterComponent);

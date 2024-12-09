@@ -1,86 +1,120 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Guild } from '../models/guild.model';  // Correct path to guild.model.ts
+import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+export interface Guild {
+  name: string;
+  members: number;
+  leader: string;
+}
 
 @Component({
   selector: 'app-create-guild',
+  standalone: true, // Mark as standalone component
+  imports: [CommonModule, ReactiveFormsModule], // Import ReactiveFormsModule here
   template: `
     <form [formGroup]="guildForm" (ngSubmit)="onSubmit()">
-      <label>
-        Guild Name:
-        <input formControlName="guildName" required />
-      </label>
-      <label>
-        Description:
-        <input formControlName="description" required />
-      </label>
-      <label>
-        Type:
-        <input formControlName="type" required />
-      </label>
-      <label>
-        Notification Preference:
-        <input formControlName="notificationPreference" required />
-      </label>
-      <label>
-        Accept Terms:
-        <input type="checkbox" formControlName="acceptTerms" />
-      </label>
+      <div>
+        <label for="guildName">Guild Name:</label>
+        <input id="guildName" formControlName="guildName" required />
+        <div *ngIf="submitted && guildForm.controls['guildName'].errors" class="error">
+          Guild name is required.
+        </div>
+      </div>
+
+      <div>
+        <label for="description">Description:</label>
+        <input id="description" formControlName="description" required />
+        <div *ngIf="submitted && guildForm.controls['description'].errors" class="error">
+          Description is required.
+        </div>
+      </div>
+
+      <div>
+        <label for="type">Type:</label>
+        <input id="type" formControlName="type" required />
+        <div *ngIf="submitted && guildForm.controls['type'].errors" class="error">
+          Type is required.
+        </div>
+      </div>
+
+      <div>
+        <label for="notificationPreference">Notification Preference:</label>
+        <input id="notificationPreference" formControlName="notificationPreference" required />
+        <div *ngIf="submitted && guildForm.controls['notificationPreference'].errors" class="error">
+          Notification preference is required.
+        </div>
+      </div>
+
+      <div>
+        <label>
+          <input type="checkbox" formControlName="acceptTerms" /> Accept Terms
+        </label>
+        <div *ngIf="submitted && guildForm.controls['acceptTerms'].errors" class="error">
+          You must accept the terms.
+        </div>
+      </div>
+
       <button type="submit" [disabled]="guildForm.invalid">Create Guild</button>
     </form>
+
+    <h3>Created Guilds:</h3>
+    <ul>
+      <li *ngFor="let guild of guilds">
+        {{ guild.name }} - Leader: {{ guild.leader }} - Members: {{ guild.members }}
+      </li>
+    </ul>
   `,
   styleUrls: ['./create-guild.component.css'],
 })
 export class CreateGuildComponent {
-  @Output() guildCreated = new EventEmitter<Guild>(); // Output event to notify parent component
+  @Output() guildCreated = new EventEmitter<Guild>(); // Event emitter for created guilds
 
-  guildForm: FormGroup;  // Define the form group
-  submitted = false;      // Flag for form submission
-  guilds: Guild[] = [];  // Array to hold created guilds
+  guildForm: FormGroup; // Form group for the guild form
+  submitted = false; // Tracks form submission status
+  guilds: Guild[] = []; // Local array to store created guilds
 
   constructor(private fb: FormBuilder) {
-    // Initialize form group with validation
+    // Initialize the reactive form with validation rules
     this.guildForm = this.fb.group({
-      guildName: ['', Validators.required],
-      description: ['', Validators.required],
-      type: ['', Validators.required],
-      notificationPreference: ['', Validators.required],
-      acceptTerms: [false, Validators.requiredTrue],
+      guildName: ['', Validators.required], // Guild name is required
+      description: ['', Validators.required], // Description is required
+      type: ['', Validators.required], // Type is required
+      notificationPreference: ['', Validators.required], // Notification preference is required
+      acceptTerms: [false, Validators.requiredTrue], // Checkbox must be checked
     });
   }
 
-  // Getter for easier access to form controls in the template
+  // Getter for form controls to easily access them
   get f() {
     return this.guildForm.controls;
   }
 
-  // Submit the form
+  // Handles form submission
   onSubmit(): void {
     this.submitted = true;
 
-    // If form is invalid, return early
+    // Prevent submission if the form is invalid
     if (this.guildForm.invalid) {
       return;
     }
 
-    // Create Guild object from the form data
+    // Create a new guild object
     const guild: Guild = {
-      name: this.guildForm.value.guildName,
-      leader: this.guildForm.value.type, // You can modify this based on your requirements
-      members: 0, // Default value or dynamic, adjust as per logic
+      name: (this.f['guildName'] as FormControl).value, // Access form value with explicit casting
+      leader: (this.f['type'] as FormControl).value, // Access form value with explicit casting
+      members: 0, // Default members count
     };
 
-    // Emit the created guild to the parent component
+    // Emit the guild to the parent component
     this.guildCreated.emit(guild);
 
-    // Optional: Add the created guild to the guilds array (or handle it in other ways)
+    // Add guild to the local array
     this.guilds.push(guild);
 
-    // Reset the form and clear the submitted flag
+    // Reset the form after submission
     this.guildForm.reset();
     this.submitted = false;
-
-    // Optional: reset acceptTerms checkbox after submission
-    this.guildForm.controls['acceptTerms'].setValue(false);
+    this.f['acceptTerms'].setValue(false); // Reset checkbox
   }
 }

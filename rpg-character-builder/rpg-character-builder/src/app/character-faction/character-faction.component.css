@@ -1,31 +1,24 @@
-.faction-selection {
-  background: #1a1a1a;
-  color: #fff;
-  padding: 30px;
-  text-align: center;
-  font-family: 'MedievalSharp', serif;
-  border-radius: 10px;
+.error-message {
+  color: red;
+  font-weight: bold;
 }
 
-h1 {
-  color: gold;
-  font-size: 2.8rem;
-  margin-bottom: 25px;
+.no-data {
+  color: gray;
+  font-style: italic;
 }
 
-.faction-list .btn {
-  display: block;
-  margin: 15px auto;
-  padding: 12px;
-  background-color: #4a3024;
-  color: white;
-  border: 3px solid #fff;
-  border-radius: 8px;
-  width: 80%;
-  font-size: 1.2rem;
-  cursor: pointer;
+.factions-list table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.faction-list .btn:hover {
-  background-color: #6b4226;
+.factions-list th, .factions-list td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.factions-list th {
+  background-color: #f4f4f4;
 }

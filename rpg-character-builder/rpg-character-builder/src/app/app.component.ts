@@ -39,14 +39,19 @@ export class AppComponent implements OnInit {
     this.authService.signout();
   }
 
+  // Handler for when a character is created
   onCharacterCreated(character: Character): void {
-    this.characters.push(character);
+    console.log('Character Created:', character);
+    this.characters.push(character); // Add the created character to the characters list
   }
 
+  // Handler for when a guild is created
   onGuildCreated(guild: Guild): void {
-    this.guilds.push(guild);
+    console.log('Guild Created:', guild);
+    this.guilds.push(guild); // Add the created guild to the guilds list
   }
 
+  // Example function to handle the character (for logging or further processing)
   handleCharacter(character: Character): void {
     console.log('Character:', character);
   }

@@ -1,7 +1,7 @@
 <div class="create-character-form">
   <h2>Create Your Character</h2>
 
-  <!-- Existing character creation form -->
+  <!-- Character creation form -->
   <form #characterForm="ngForm" (ngSubmit)="addCharacter()">
     <div>
       <label for="name">Name:</label>
@@ -73,12 +73,18 @@
     </div>
   </div>
 
-  <!-- New player name form -->
+  <!-- Player name form -->
   <h2>Create Player</h2>
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <div>
       <label for="playerName">Player Name:</label>
-      <input type="text" name="playerName" ngModel placeholder="Enter player name" required />
+      <input
+        type="text"
+        name="playerName"
+        ngModel
+        placeholder="Enter player name"
+        required
+      />
     </div>
 
     <button type="submit" [disabled]="form.invalid">Submit</button>

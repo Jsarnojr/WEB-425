@@ -1,46 +1,30 @@
-// character-faction.component.ts
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';  // Import CommonModule to use ngFor
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-character-faction',
-  template: `
-    <div class="faction-selection">
-      <h1>Choose Your Allegiance</h1>
-      <button class="btn" *ngFor="let faction of factions">{{ faction }}</button>
-    </div>
-  `,
-  styles: [`
-    .faction-selection {
-      background: #1a1a1a;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-      font-family: 'MedievalSharp', serif;
-    }
-    h1 {
-      color: gold;
-    }
-    .btn {
-      display: block;
-      margin: 10px auto;
-      padding: 10px;
-      background-color: #6b4226;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      width: 80%;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-  `],
-  standalone: true,  // Marking the component as standalone
-  imports: [CommonModule]  // Include CommonModule for ngFor
+  templateUrl: './character-faction.component.html',
+  styleUrls: ['./character-faction.component.css']
 })
-export class CharacterFactionComponent {
-  factions = ['Knights of the Flame', 'Shadow Brotherhood', 'Order of the Arcane'];  // Example list of factions
+export class CharacterFactionComponent implements OnInit {
+  characterFactions: { name: string, description: string }[] = [];
+  errorMessage: string | null = null;
 
-  constructor() {
-    // Logic for dynamically setting the factions can go here
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.fetchCharacterFactions();
+  }
+
+  fetchCharacterFactions(): void {
+    this.http.get<{ name: string, description: string }[]>('http://localhost:3000/api/character-factions')
+      .subscribe({
+        next: (data) => {
+          this.characterFactions = data;
+        },
+        error: (err) => {
+          this.errorMessage = 'Error fetching character factions. Please try again later.';
+        }
+      });
   }
 }

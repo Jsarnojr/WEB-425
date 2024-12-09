@@ -88,6 +88,12 @@
     nav ul li a:hover {
       color: var(--vivid-pink);
     }
+
+    footer ul {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
   </style>
 </head>
 
@@ -136,19 +142,23 @@
       <div>
         <!-- Create Character Section -->
         <app-create-character (characterCreated)="onCharacterCreated($event)"></app-create-character>
-  <ul>
-    <li *ngFor="let character of characters">
-      {{ character.name }} - {{ character.class }} (Level {{ character.level }})
-    </li>
-  </ul>
 
-  <!-- Guild Creation -->
-  <app-create-guild (guildCreated)="onGuildCreated($event)"></app-create-guild>
-  <ul>
-    <li *ngFor="let guild of guilds">
-      {{ guild.name }} (Leader: {{ guild.leader }}, Members: {{ guild.members }})
-    </li>
-  </ul>
+        <!-- Display list of created characters -->
+        <ul>
+          <li *ngFor="let character of characters">
+            {{ character.name }} - {{ character.class }} (Level {{ character.level }})
+          </li>
+        </ul>
+
+        <!-- Guild Creation -->
+        <app-create-guild (guildCreated)="onGuildCreated($event)"></app-create-guild>
+
+        <!-- Display list of created guilds -->
+        <ul>
+          <li *ngFor="let guild of guilds">
+            {{ guild.name }} (Leader: {{ guild.leader }}, Members: {{ guild.members }})
+          </li>
+        </ul>
       </div>
     </main>
 

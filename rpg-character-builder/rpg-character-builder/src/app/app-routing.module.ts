@@ -7,12 +7,14 @@ import { CreateGuildComponent } from './create-guild/create-guild.component';
 import { CharacterFactionComponent } from './character-faction/character-faction.component';
 
 export const routes: Routes = [
-  { path: '', component: PlayersComponent },
+  { path: '', component: PlayersComponent },  // Default route
   { path: 'players', component: PlayersComponent },
   { path: 'create-character', component: CreateCharacterComponent },
   { path: 'create-guild', component: CreateGuildComponent },
   { path: 'character-faction', component: CharacterFactionComponent },
   { path: 'signin', component: SigninComponent },
+  { path: 'character-factions', component: CharacterFactionComponent },  // New path for character factions
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }  // Wildcard route for unknown paths
 ];
 
 @NgModule({

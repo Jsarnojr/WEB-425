@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CreateGuildComponent } from './create-guild.component';
+import { CreateGuildComponent } from './create-guild.component'; // Import CreateGuildComponent (standalone)
 
 describe('CreateGuildComponent', () => {
   let component: CreateGuildComponent;
@@ -8,8 +8,7 @@ describe('CreateGuildComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CreateGuildComponent],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, CreateGuildComponent], // Add CreateGuildComponent to imports, not declarations
     }).compileComponents();
   });
 
