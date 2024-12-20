@@ -1,1 +1,91 @@
-/* You can add global styles to this file, and also import other style files */
+/* General styles for the body */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #e0f7fa, #80deea); /* Light blue gradient */
+  color: #333;
+}
+
+/* Navbar styles */
+.navbar {
+  margin-bottom: 20px;
+  padding: 10px 0;
+  background-color: #007bff; /* Blue background for navbar */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow under navbar */
+}
+
+/* Navbar brand styles */
+.navbar-brand {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav {
+  display: flex; /* Make the navbar links horizontal */
+  justify-content: center; /* Center the navbar links */
+  list-style: none; /* Remove default list style */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.navbar-nav .nav-link {
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  text-transform: capitalize;
+  text-align: center; /* Ensure text is centered in each link */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ff9800;
+  text-decoration: none;
+  transform: scale(1.05);
+}
+
+/* Styling for active link */
+.navbar-nav .nav-link.active {
+  border-bottom: 2px solid #ff9800; /* Orange underline for active link */
+  font-weight: bold; /* Make active link bold */
+}
+
+/* Mobile navbar (for responsive design) */
+.navbar-toggler {
+  border-color: #ffffff; /* White border for the mobile toggle button */
+}
+
+.navbar-toggler-icon {
+  background-color: #ffffff; /* White icon for the navbar toggler */
+}
+
+/* Footer styles */
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column; /* Stack the links vertically on mobile */
+    align-items: center;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 12px 0;
+  }
+}

@@ -1,0 +1,173 @@
+/* Global Body Style */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Main Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  background-color: #0044cc;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+/* Custom Navigation Styles */
+.custom-navbar {
+  background-color: #333;
+  padding: 10px;
+}
+
+.custom-navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-navbar .logo {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.custom-navbar .nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.custom-navbar .nav-links .nav-item {
+  margin-left: 20px;
+}
+
+.custom-navbar .nav-links .nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.custom-navbar .nav-links .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Main Content */
+main {
+  padding: 20px;
+  background-color: white;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+main h2 {
+  font-size: 2rem;
+  color: #0044cc;
+  margin-bottom: 10px;
+}
+
+main p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+/* Links */
+a {
+  color: #0044cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Card/Box Style for Sections */
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card ul li {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.card ul li strong {
+  color: #0044cc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .custom-navbar .nav-links .nav-item {
+    margin-left: 15px;
+  }
+
+  .custom-navbar .nav-links .nav-link {
+    padding: 8px 12px;
+  }
+
+  main {
+    padding: 15px;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  footer {
+    font-size: 0.9rem;
+  }
+}
